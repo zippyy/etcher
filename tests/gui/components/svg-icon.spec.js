@@ -62,12 +62,12 @@ describe('Browser: SVGIcon', function () {
       m.chai.expect(compiledDoc.outerHTML).to.equal(originalDoc.outerHTML)
     })
 
-    it('should accept an SVG in the path attribute', function () {
+    it('should accept an SVG in the contents attribute', function () {
       const iconContents = '<svg><rect x="10" y="10" height="100" width="100" style="stroke:red;fill:blue;"/></svg>'
       const imgData = `data:image/svg+xml,${encodeURIComponent(iconContents)}`
       $rootScope.iconContents = iconContents
 
-      const element = $compile('<svg-icon path="iconContents">Resin.io</svg-icon>')($rootScope)
+      const element = $compile('<svg-icon contents="iconContents">Resin.io</svg-icon>')($rootScope)
       $rootScope.$digest()
       m.chai.expect(element.children().attr('src')).to.equal(imgData)
     })
