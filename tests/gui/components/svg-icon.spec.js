@@ -48,7 +48,7 @@ describe('Browser: SVGIcon', function () {
       iconContents[0] = `<!--${iconContents[0].slice(1, iconContents[0].length - 1)}-->`
       iconContents = iconContents.join('\n')
 
-      const element = $compile(`<svg-icon path="'${icon}'">Resin.io</svg-icon>`)($rootScope)
+      const element = $compile(`<svg-icon paths="['${icon}']">Resin.io</svg-icon>`)($rootScope)
       $rootScope.$digest()
 
       // We parse the SVGs to get rid of discrepancies caused by string differences
@@ -67,7 +67,7 @@ describe('Browser: SVGIcon', function () {
       const imgData = `data:image/svg+xml,${encodeURIComponent(iconContents)}`
       $rootScope.iconContents = iconContents
 
-      const element = $compile('<svg-icon contents="iconContents">Resin.io</svg-icon>')($rootScope)
+      const element = $compile('<svg-icon contents="[iconContents]">Resin.io</svg-icon>')($rootScope)
       $rootScope.$digest()
       m.chai.expect(element.children().attr('src')).to.equal(imgData)
     })
@@ -78,9 +78,9 @@ describe('Browser: SVGIcon', function () {
       const imgData = 'data:image/svg+xml,'
       $rootScope.iconContents = iconContents
 
-      const element = $compile('<svg-icon path="iconContents">Resin.io</svg-icon>')($rootScope)
+      const element = $compile('<svg-icon contents="[iconContents]">Resin.io</svg-icon>')($rootScope)
       $rootScope.$digest()
-      m.chai.expect(element.children().attr('src')).to.equal(imgData)
+      m.chai.expect(element.children().attr('src')).to.be.empty
     })
 
     it('should default the size to 40x40 pixels', function () {
