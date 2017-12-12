@@ -4,7 +4,7 @@ index 1e7c766..e42c513 100644
 +++ b/index.js
 @@ -7,11 +7,8 @@ var extend = require('util-extend');
  var assert = require('assert');
- var fs = require('fs');
+ var fs = window.require('fs');
 
 -// node-pre-gyp magic
 -var nodePreGyp = require('node-pre-gyp');

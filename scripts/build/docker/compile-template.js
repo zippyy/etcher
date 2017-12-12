@@ -20,7 +20,7 @@
 // the necessary dependencies/ to run and build Etcher in multiple platforms.
 
 const _ = require('lodash')
-const fs = require('fs')
+const fs = window.require('fs')
 const path = require('path')
 const currentDirectory = __dirname
 

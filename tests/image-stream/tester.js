@@ -20,7 +20,7 @@ const m = require('mochainon')
 const _ = require('lodash')
 const Bluebird = require('bluebird')
 const fileExists = require('file-exists')
-const fs = Bluebird.promisifyAll(require('fs'))
+const fs = Bluebird.promisifyAll(window.require('fs'))
 const tmp = require('tmp')
 const imageStream = require('../../lib/image-stream/index')
 

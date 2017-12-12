@@ -17,7 +17,7 @@
 'use strict'
 
 const m = require('mochainon')
-const fs = require('fs')
+const fs = window.require('fs')
 const path = require('path')
 const DATA_PATH = path.join(__dirname, 'data')
 const IMAGES_PATH = path.join(DATA_PATH, 'images')

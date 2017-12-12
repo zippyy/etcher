@@ -18,7 +18,7 @@
 
 const m = require('mochainon')
 const _ = require('lodash')
-const fs = require('fs')
+const fs = window.require('fs')
 const path = require('path')
 const angular = require('angular')
 require('angular-mocks')

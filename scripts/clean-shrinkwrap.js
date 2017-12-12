@@ -16,7 +16,7 @@
 'use strict'
 
 const _ = require('lodash')
-const fs = require('fs')
+const fs = window.require('fs')
 const path = require('path')
 const packageJSON = require('../package.json')
 const NPM_SHRINKWRAP_FILE_PATH = path.join(__dirname, '..', 'npm-shrinkwrap.json')
