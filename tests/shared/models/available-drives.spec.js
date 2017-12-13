@@ -347,6 +347,27 @@ describe('Model: availableDrives', function () {
 
             m.chai.expect(selectionState.hasDrive()).to.be.false
           })
+
+          it('should not auto-select a single large size drive', function () {
+            m.chai.expect(selectionState.hasDrive()).to.be.false
+
+            availableDrives.setDrives([
+              {
+                device: '/dev/sdb',
+                name: 'Foo',
+                size: 64000000001,
+                mountpoints: [
+                  {
+                    path: '/mnt/foo'
+                  }
+                ],
+                system: false,
+                protected: false
+              }
+            ])
+
+            m.chai.expect(selectionState.hasDrive()).to.be.false
+          })
         })
       })
     })
