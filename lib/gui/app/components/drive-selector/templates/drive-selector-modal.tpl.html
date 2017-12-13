@@ -55,6 +55,9 @@
 <div class="modal-footer">
   <button class="button button-primary button-block"
     tabindex="{{ 15 + modal.getDrives().length }}"
+    ng-class="{
+      'button-danger': modal.isSelectedDriveDangerous()
+    }"
     ng-click="modal.closeModal()"
     ng-disabled="!modal.state.hasDrive()">Continue</button>
 </div>
