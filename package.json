@@ -90,7 +90,8 @@
     "winusb-driver-generator": "1.1.1",
     "xml2js": "0.4.17",
     "yargs": "11.0.0",
-    "yauzl": "2.6.0"
+    "yauzl": "2.6.0",
+    "yazl": "2.4.3"
   },
   "devDependencies": {
     "angular-mocks": "1.6.3",

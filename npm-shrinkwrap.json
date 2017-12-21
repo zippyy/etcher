@@ -7075,6 +7075,10 @@
       "version": "2.6.0",
       "resolved": "https://registry.npmjs.org/yauzl/-/yauzl-2.6.0.tgz"
     },
+    "yazl": {
+      "version": "2.4.3",
+      "resolved": "https://registry.npmjs.org/yazl/-/yazl-2.4.3.tgz"
+    },
     "zip-stream": {
       "version": "1.2.0",
       "resolved": "https://registry.npmjs.org/zip-stream/-/zip-stream-1.2.0.tgz",
