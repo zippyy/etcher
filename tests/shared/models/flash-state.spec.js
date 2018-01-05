@@ -26,7 +26,7 @@ describe('Model: flashState', function () {
 
   describe('flashState', function () {
     describe('.resetState()', function () {
-      it('should be able to reset the progress state', function () {
+      it('should be able to reset the progress state while flashing', function () {
         flashState.setFlashingFlag()
         flashState.setProgressState({
           type: 'write',
@@ -39,11 +39,12 @@ describe('Model: flashState', function () {
 
         m.chai.expect(flashState.getFlashState()).to.deep.equal({
           percentage: 0,
-          speed: 0
+          speed: 0,
+          humanSpeed: ''
         })
       })
 
-      it('should be able to reset the progress state', function () {
+      it('should be able to reset the progress state after flashing', function () {
         flashState.unsetFlashingFlag({
           cancelled: false,
           sourceChecksum: '1234'
@@ -102,7 +103,7 @@ describe('Model: flashState', function () {
             eta: 15,
             speed: 100000000000
           })
-        }).to.throw('Missing state type')
+        }).to.throw('Missing state fields: type')
       })
 
       it('should throw if type is not a string', function () {
@@ -126,7 +127,7 @@ describe('Model: flashState', function () {
             eta: 15,
             speed: 100000000000
           })
-        }).to.not.throw('Missing state percentage')
+        }).to.not.throw('Missing state fields: percentage')
       })
 
       it('should throw if percentage is missing', function () {
@@ -137,7 +138,7 @@ describe('Model: flashState', function () {
             eta: 15,
             speed: 100000000000
           })
-        }).to.throw('Missing state percentage')
+        }).to.throw('Missing state fields: percentage')
       })
 
       it('should throw if percentage is not a number', function () {
@@ -184,7 +185,7 @@ describe('Model: flashState', function () {
             percentage: 50,
             speed: 100000000000
           })
-        }).to.throw('Missing state eta')
+        }).to.throw('Missing state fields: eta')
       })
 
       it('should not throw if eta is equal to zero', function () {
@@ -196,7 +197,7 @@ describe('Model: flashState', function () {
             eta: 0,
             speed: 100000000000
           })
-        }).to.not.throw('Missing state eta')
+        }).to.not.throw('Missing state fields: eta')
       })
 
       it('should throw if eta is not a number', function () {
@@ -219,7 +220,7 @@ describe('Model: flashState', function () {
             percentage: 50,
             eta: 15
           })
-        }).to.throw('Missing state speed')
+        }).to.throw('Missing state fields: speed')
       })
 
       it('should not throw if speed is 0', function () {
@@ -231,7 +232,24 @@ describe('Model: flashState', function () {
             eta: 15,
             speed: 0
           })
-        }).to.not.throw('Missing state speed')
+        }).to.not.throw('Missing state fields: speed')
+      })
+
+      it('should set the .humanSpeed field', function () {
+        const state = {
+          type: 'write',
+          percentage: 50,
+          eta: 15,
+          speed: 10000000
+        }
+
+        flashState.setFlashingFlag()
+        flashState.setProgressState(state)
+
+        // eslint-disable-next-line lodash/prefer-lodash-method
+        m.chai.expect(flashState.getFlashState()).to.deep.equal(Object.assign({}, state, {
+          humanSpeed: '10 MB/s'
+        }))
       })
 
       it('should floor the percentage number', function () {
@@ -268,7 +286,8 @@ describe('Model: flashState', function () {
         const currentFlashState = flashState.getFlashState()
         m.chai.expect(currentFlashState).to.deep.equal({
           percentage: 0,
-          speed: 0
+          speed: 0,
+          humanSpeed: ''
         })
       })
 
@@ -283,7 +302,11 @@ describe('Model: flashState', function () {
         flashState.setFlashingFlag()
         flashState.setProgressState(state)
         const currentFlashState = flashState.getFlashState()
-        m.chai.expect(currentFlashState).to.deep.equal(state)
+
+        // eslint-disable-next-line lodash/prefer-lodash-method
+        m.chai.expect(currentFlashState).to.deep.equal(Object.assign({
+          humanSpeed: '0 B/s'
+        }, state))
       })
     })
 
@@ -378,7 +401,8 @@ describe('Model: flashState', function () {
 
         m.chai.expect(flashState.getFlashState()).to.not.deep.equal({
           percentage: 0,
-          speed: 0
+          speed: 0,
+          humanSpeed: '0 B/s'
         })
 
         flashState.unsetFlashingFlag({
@@ -388,7 +412,8 @@ describe('Model: flashState', function () {
 
         m.chai.expect(flashState.getFlashState()).to.deep.equal({
           percentage: 0,
-          speed: 0
+          speed: 0,
+          humanSpeed: ''
         })
       })
 
