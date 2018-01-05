@@ -263,6 +263,16 @@ describe('Model: flashState', function () {
 
         m.chai.expect(flashState.getFlashState().percentage).to.equal(50)
       })
+
+      it('should check for path existence and whether undefined', function () {
+        flashState.setFlashingFlag()
+        m.chai.expect(function () {
+          flashState.setProgressState({
+            type: undefined,
+            percentage: undefined
+          })
+        }).to.throw('Missing state fields: speed, eta, type, percentage')
+      })
     })
 
     describe('.getFlashResults()', function () {
