@@ -120,10 +120,6 @@ class DriveStatus extends React.PureComponent {
 }
 
 const StyledProgressGaugeSidesWrapper = styled.div`
-  border: 7px solid gray;
-  border-radius: 50%;
-  width: ${props => props.size};
-  height: ${props => props.size};
   position: relative;
 `
 
@@ -137,6 +133,7 @@ const StyledProgressGaugeSides = styled.div`
   position: absolute;
   clip-path: inset(0 50% 0 0);
   transition: transform 0.2s;
+  -webkit-backface-visibility: hidden;
 `
 
 const StyledProgressGaugeLabel = styled.div`
@@ -147,7 +144,7 @@ const StyledProgressGaugeLabel = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 80px;
 `
 
 class ProgressGauge extends React.PureComponent {
@@ -160,29 +157,28 @@ class ProgressGauge extends React.PureComponent {
   }
 
   render() {
-    const clipStyles = {
-      width: '100%',
-      height: '100%',
-    }
-
-    const degreeFactor = 3.6
-    const progressDegrees = Math.round(this.props.percentage * degreeFactor)
-
-    const leftStyles = {
-      transform: `rotate(${Math.min(progressDegrees, 180)}deg)`
-    }
-
-    const rightStyles = {
-      transform: `rotate(${progressDegrees < 180 ? 0 : progressDegrees}deg)`,
-      borderColor: progressDegrees < 180 ? 'gray' : this.props.color
-    }
+    const gaugeRadius = 36 // 40 - (7/2)
+    const circumference = Math.PI * ( gaugeRadius * 2 )
+    const circleDashOffset = circumference * ((100 - this.props.percentage) / 100)
 
     return (
       <StyledProgressGaugeSidesWrapper size={ this.props.size } minSize={ this.props.minSize }>
-        <div style={ clipStyles }>
-          <StyledProgressGaugeSides style={ leftStyles } color={ this.props.color } />
-          <StyledProgressGaugeSides style={ rightStyles } />
-        </div>
+        <svg id="svg" width="80" height="80" version="1.1" xmlns="http://www.w3.org/2000/svg">
+          <style>{`
+            circle {
+              transition: stroke-dashoffset 0.2s linear;
+              stroke: gray;
+              stroke-width: 7px;
+              transform: rotate(-90deg);
+              transform-origin: center;
+            }
+            #bar {
+              stroke: #FF9F1E;
+            }
+          `}</style>
+          <circle r={ gaugeRadius } cx="40" cy="40" fill="transparent" strokeDasharray={ circumference } strokeDashoffset="0"></circle>
+          <circle id="bar" r={ gaugeRadius } cx="40" cy="40" fill="transparent" strokeDasharray={ circumference } strokeDashoffset={ circleDashOffset }></circle>
+        </svg>
         <StyledProgressGaugeLabel>{ this.props.children }</StyledProgressGaugeLabel>
       </StyledProgressGaugeSidesWrapper>
     )
@@ -193,7 +189,7 @@ const StyledProgressGauge = styled(ProgressGauge)`
 `
 
 const StyledPercentageText = styled.div`
-  font-size: ${props => props.size}vh;
+  font-size: 4vh;
   color: white;
   font-weight: bold;
 `
@@ -281,14 +277,15 @@ class ProgressPage extends React.PureComponent {
 
       const percentageText = (
         <StyledPercentageText size={ size / 3 }>
-          { `${state.percentage}%` }
+          { `${state.percentage.toFixed()}%` }
         </StyledPercentageText>
       )
 
       const centerPiece = isDone ? checkmarkElement : percentageText
       const gaugeColor = isDone ? '#5fb835' : '#ff912f'
 
-      const { displayName } = availableDrives.findDriveByDevice(state.device) || {}
+      const drive = availableDrives.findDriveByDevice(state.device) || {}
+      const description = drive.device || drive.description || drive.displayName
 
       return (
         <StyledProgressGaugeWrapper>
@@ -296,7 +293,7 @@ class ProgressPage extends React.PureComponent {
             { centerPiece }
           </ProgressGauge>
           <ProgressMetadata
-            title={ displayName }
+            title={ description }
             subtitle={ `${stateLabels[state.type]} - ${state.speed} MB/s` }>
           </ProgressMetadata>
         </StyledProgressGaugeWrapper>
@@ -313,7 +310,7 @@ class ProgressPage extends React.PureComponent {
     const source = selectionState.getImage()
 
     const drives = selectionState.getSelectedDrives()
-    const driveLabel = drives.length === 1 ? drives[0].displayName : 'Multiple drives'
+    const driveLabel = drives.length === 1 ? drives[0].description : 'Multiple drives'
 
     return (
       <StyledProgressPageWrapper>

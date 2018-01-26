@@ -66,7 +66,7 @@
               'text-disabled': main.shouldDriveStepBeDisabled()
             }"
             ng-click="main.showSelectedDrivesDetails()"
-            uib-tooltip="{{ main.selection.getCurrentDrive().displayName }} ({{ main.selection.getCurrentDrive().device }})">
+            uib-tooltip="{{ main.selection.getCurrentDrive().description }} ({{ main.selection.getCurrentDrive().device }})">
             <span class="step-drive step-name">
               {{ main.getDescription() | middleEllipses:11 }}
             </span>
@@ -95,7 +95,7 @@
           striped="{{ main.state.getAverageFlashState().type == 'check' }}"
           ng-attr-active="{{ main.state.isFlashing() }}"
           ng-click="flash.flashImageToDrives(main.selection.getImage(), main.selection.getSelectedDrives())"
-          ng-disabled="main.shouldFlashStepBeDisabled() || main.state.getLastFlashErrorCode()">
+          ng-disabled="main.shouldFlashStepBeDisabled()">
             <span ng-bind="flash.getProgressButtonLabel()"></span>
         </progress-button>
 
