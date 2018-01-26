@@ -288,7 +288,7 @@ class ProgressPage extends React.PureComponent {
       const centerPiece = isDone ? checkmarkElement : percentageText
       const gaugeColor = isDone ? '#5fb835' : '#ff912f'
 
-      const { description } = availableDrives.findDriveByDevice(state.device) || {}
+      const { displayName } = availableDrives.findDriveByDevice(state.device) || {}
 
       return (
         <StyledProgressGaugeWrapper>
@@ -296,7 +296,7 @@ class ProgressPage extends React.PureComponent {
             { centerPiece }
           </ProgressGauge>
           <ProgressMetadata
-            title={ description }
+            title={ displayName }
             subtitle={ `${stateLabels[state.type]} - ${state.speed} MB/s` }>
           </ProgressMetadata>
         </StyledProgressGaugeWrapper>
@@ -313,7 +313,7 @@ class ProgressPage extends React.PureComponent {
     const source = selectionState.getImage()
 
     const drives = selectionState.getSelectedDrives()
-    const driveLabel = drives.length === 1 ? drives[0].description : 'Multiple drives'
+    const driveLabel = drives.length === 1 ? drives[0].displayName : 'Multiple drives'
 
     return (
       <StyledProgressPageWrapper>
