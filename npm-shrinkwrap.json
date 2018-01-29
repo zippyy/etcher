@@ -1087,8 +1087,7 @@
     },
     "base64-js": {
       "version": "1.2.0",
-      "resolved": "https://registry.npmjs.org/base64-js/-/base64-js-1.2.0.tgz",
-      "dev": true
+      "resolved": "https://registry.npmjs.org/base64-js/-/base64-js-1.2.0.tgz"
     },
     "bcrypt-pbkdf": {
       "version": "1.0.1",
@@ -1247,6 +1246,10 @@
       "version": "2.11.3",
       "resolved": "https://registry.npmjs.org/browserslist/-/browserslist-2.11.3.tgz",
       "dev": true
+    },
+    "buffer": {
+      "version": "5.0.8",
+      "resolved": "https://registry.npmjs.org/buffer/-/buffer-5.0.8.tgz"
     },
     "buffer-crc32": {
       "version": "0.2.5",
@@ -1687,10 +1690,18 @@
         }
       }
     },
+    "css-color-keywords": {
+      "version": "1.0.0",
+      "resolved": "https://registry.npmjs.org/css-color-keywords/-/css-color-keywords-1.0.0.tgz"
+    },
     "css-parse": {
       "version": "2.0.0",
       "resolved": "https://registry.npmjs.org/css-parse/-/css-parse-2.0.0.tgz",
       "dev": true
+    },
+    "css-to-react-native": {
+      "version": "2.0.4",
+      "resolved": "https://registry.npmjs.org/css-to-react-native/-/css-to-react-native-2.0.4.tgz"
     },
     "css-value": {
       "version": "0.0.1",
@@ -4254,8 +4265,7 @@
     },
     "has-flag": {
       "version": "1.0.0",
-      "resolved": "https://registry.npmjs.org/has-flag/-/has-flag-1.0.0.tgz",
-      "dev": true
+      "resolved": "https://registry.npmjs.org/has-flag/-/has-flag-1.0.0.tgz"
     },
     "has-unicode": {
       "version": "2.0.1",
@@ -4312,6 +4322,10 @@
     "hoek": {
       "version": "2.16.3",
       "resolved": "https://registry.npmjs.org/hoek/-/hoek-2.16.3.tgz"
+    },
+    "hoist-non-react-statics": {
+      "version": "1.2.0",
+      "resolved": "https://registry.npmjs.org/hoist-non-react-statics/-/hoist-non-react-statics-1.2.0.tgz"
     },
     "home-or-tmp": {
       "version": "2.0.0",
@@ -4399,6 +4413,10 @@
     "iconv-lite": {
       "version": "0.4.15",
       "resolved": "https://registry.npmjs.org/iconv-lite/-/iconv-lite-0.4.15.tgz"
+    },
+    "ieee754": {
+      "version": "1.1.8",
+      "resolved": "https://registry.npmjs.org/ieee754/-/ieee754-1.1.8.tgz"
     },
     "ignore": {
       "version": "3.2.6",
@@ -4675,6 +4693,16 @@
     "is-phantom": {
       "version": "1.0.1",
       "resolved": "https://registry.npmjs.org/is-phantom/-/is-phantom-1.0.1.tgz"
+    },
+    "is-plain-object": {
+      "version": "2.0.4",
+      "resolved": "https://registry.npmjs.org/is-plain-object/-/is-plain-object-2.0.4.tgz",
+      "dependencies": {
+        "isobject": {
+          "version": "3.0.1",
+          "resolved": "https://registry.npmjs.org/isobject/-/isobject-3.0.1.tgz"
+        }
+      }
     },
     "is-posix-bracket": {
       "version": "0.1.1",
@@ -6446,6 +6474,10 @@
       "resolved": "https://registry.npmjs.org/pluralize/-/pluralize-1.2.1.tgz",
       "dev": true
     },
+    "postcss-value-parser": {
+      "version": "3.3.0",
+      "resolved": "https://registry.npmjs.org/postcss-value-parser/-/postcss-value-parser-3.3.0.tgz"
+    },
     "prebuild-install": {
       "version": "2.3.0",
       "resolved": "https://registry.npmjs.org/prebuild-install/-/prebuild-install-2.3.0.tgz",
@@ -7488,10 +7520,23 @@
       "resolved": "https://registry.npmjs.org/striptags/-/striptags-2.2.1.tgz",
       "dev": true
     },
+    "styled-components": {
+      "version": "3.1.2",
+      "resolved": "https://registry.npmjs.org/styled-components/-/styled-components-3.1.2.tgz",
+      "dependencies": {
+        "supports-color": {
+          "version": "3.2.3",
+          "resolved": "https://registry.npmjs.org/supports-color/-/supports-color-3.2.3.tgz"
+        }
+      }
+    },
     "stylis": {
       "version": "3.4.8",
-      "resolved": "https://registry.npmjs.org/stylis/-/stylis-3.4.8.tgz",
-      "dev": true
+      "resolved": "https://registry.npmjs.org/stylis/-/stylis-3.4.8.tgz"
+    },
+    "stylis-rule-sheet": {
+      "version": "0.0.7",
+      "resolved": "https://registry.npmjs.org/stylis-rule-sheet/-/stylis-rule-sheet-0.0.7.tgz"
     },
     "sudo-prompt": {
       "version": "8.0.0",
