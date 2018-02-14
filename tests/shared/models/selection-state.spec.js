@@ -120,7 +120,7 @@ describe('Model: selectionState', function () {
         selectionState.selectDrive('/dev/disk5')
         const drives = selectionState.getSelectedDevices()
         const lastDriveDevice = _.last(drives)
-        const lastDrive = availableDrives.findDriveByDevice(lastDriveDevice)
+        const lastDrive = _.find(availableDrives.getDrives(), { device: lastDriveDevice })
         m.chai.expect(lastDrive).to.deep.equal({
           device: '/dev/disk5',
           name: 'USB Drive',
