@@ -51,6 +51,9 @@ else
 		ifeq ($(shell uname -m),armv7l)
 			HOST_ARCH = armv7hf
 		endif
+		ifeq ($(shell uname -m),aarch64)
+			HOST_ARCH = armv7hf
+		endif
 	endif
 	ifeq ($(shell uname -s),Darwin)
 		PLATFORM = darwin
