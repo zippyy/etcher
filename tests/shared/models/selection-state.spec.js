@@ -890,39 +890,6 @@ describe('Model: selectionState', function () {
         m.chai.expect(selectionState.hasImage()).to.be.false
       })
     })
-
-    describe('given the preserveImage option', function () {
-      beforeEach(function () {
-        selectionState.clear({
-          preserveImage: true
-        })
-      })
-
-      it('getDrive() should return undefined', function () {
-        const drive = selectionState.getDrive()
-        m.chai.expect(drive).to.be.undefined
-      })
-
-      it('getImagePath() should return the image path', function () {
-        const imagePath = selectionState.getImagePath()
-        m.chai.expect(imagePath).to.equal('foo.img')
-      })
-
-      it('getImageSize() should return the image size', function () {
-        const imageSize = selectionState.getImageSize()
-        m.chai.expect(imageSize).to.equal(999999999)
-      })
-
-      it('hasDrive() should return false', function () {
-        const hasDrive = selectionState.hasDrive()
-        m.chai.expect(hasDrive).to.be.false
-      })
-
-      it('hasImage() should return true', function () {
-        const hasImage = selectionState.hasImage()
-        m.chai.expect(hasImage).to.be.true
-      })
-    })
   })
 
   describe('.isCurrentDrive()', function () {
